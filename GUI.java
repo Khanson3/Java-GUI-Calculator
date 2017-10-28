@@ -415,9 +415,19 @@ public class GUI extends Frame implements WindowListener {
                     }
                 }
                 txt.setText(num1 + " " + op + " " + num2);
+            } else if (source == btnCE) {
+                if (op.equals("")) {
+                    num1 = "";
+                } else if (!op.equals("")) {
+                    num2 = "";
+                }
+                txt.setText(num1 + " " + op + " " + num2);
+            } else if (source == btnC) {
+                num1 = "";
+                op = "";
+                num2 = "";
+                txt.setText(num1 + " " + op + " " + num2);
             }
-
-
         }
     }
 
