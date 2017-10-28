@@ -159,205 +159,309 @@ public class GUI extends Frame implements WindowListener {
         GUI calc = new GUI();
     }
 
-    private class BtnListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-            Button source = (Button) evt.getSource();
-
+    public class Calculations {
+        public void calculate(Button source) {
             if (source == btn0) {
                 if (op.equals("")) {
-                    num1 += "0";
+                    if (!num1.equals("UNDEFINED")) {
+                        num1 += "0";
+                    }
                 } else {
                     num2 += "0";
                 }
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn1) {
                 if (op.equals("")) {
-                    num1 += "1";
-                    txt.setText(num1 + " " + op + " " + num2);
+                    if (!num1.equals("UNDEFINED")) {
+                        num1 += "1";
+                    }
                 } else {
                     num2 += "1";
-                    txt.setText(num1 + " " + op + " " + num2);
                 }
+                    txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn2) {
                 if (op.equals("")) {
-                    num1 += "2";
-                    txt.setText(num1 + " " + op + " " + num2);
+                    if (!num1.equals("UNDEFINED")) {
+                        num1 += "2";
+                    }
                 } else {
                     num2 += "2";
-                    txt.setText(num1 + " " + op + " " + num2);
                 }
+                    txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn3) {
                 if (op.equals("")) {
-                    num1 += "3";
-                    txt.setText(num1 + " " + op + " " + num2);
+                    if (!num1.equals("UNDEFINED")) {
+                        num1 += "3";
+                    }
                 } else {
                     num2 += "3";
-                    txt.setText(num1 + " " + op + " " + num2);
                 }
+                    txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn4) {
                 if (op.equals("")) {
-                    num1 += "4";
-                    txt.setText(num1 + " " + op + " " + num2);
+                    if (!num1.equals("UNDEFINED")) {
+                        num1 += "4";
+                    }
                 } else {
                     num2 += "4";
-                    txt.setText(num1 + " " + op + " " + num2);
                 }
+                    txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn5) {
                 if (op.equals("")) {
-                    num1 += "5";
-                    txt.setText(num1 + " " + op + " " + num2);
+                    if (!num1.equals("UNDEFINED")) {
+                        num1 += "5";
+                    }
                 } else {
                     num2 += "5";
-                    txt.setText(num1 + " " + op + " " + num2);
                 }
+                txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn6) {
                 if (op.equals("")) {
-                    num1 += "6";
-                    txt.setText(num1 + " " + op + " " + num2);
+                    if (!num1.equals("UNDEFINED")) {
+                        num1 += "6";
+                    }
                 } else {
                     num2 += "6";
-                    txt.setText(num1 + " " + op + " " + num2);
                 }
+                txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn7) {
                 if (op.equals("")) {
-                    num1 += "7";
-                    txt.setText(num1 + " " + op + " " + num2);
+                    if (!num1.equals("UNDEFINED")) {
+                        num1 += "7";
+                    }
                 } else {
                     num2 += "7";
-                    txt.setText(num1 + " " + op + " " + num2);
                 }
+                txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn8) {
                 if (op.equals("")) {
-                    num1 += "8";
-                    txt.setText(num1 + " " + op + " " + num2);
+                    if (!num1.equals("UNDEFINED")) {
+                        num1 += "8";
+                    }
                 } else {
                     num2 += "8";
-                    txt.setText(num1 + " " + op + " " + num2);
                 }
+                txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn9) {
                 if (op.equals("")) {
-                    num1 += "9";
-                    txt.setText(num1 + " " + op + " " + num2);
+                    if (!num1.equals("UNDEFINED")) {
+                        num1 += "9";
+                    }
                 } else {
                     num2 += "9";
-                    txt.setText(num1 + " " + op + " " + num2);
                 }
+                txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnAdd) {
                 if (num1.equals("")) {
                     num1 = "0";
+                    op = "+";
                 }
                 if (!num1.equals("") && !num2.equals("")) {
                     switch (op) {
                         case "+":
                             num1 = Double.toString(Double.parseDouble(num1) + Double.parseDouble(num2));
+                            op = "+";
                             num2 = "";
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                             break;
                         case "-":
                             num1 = Double.toString(Double.parseDouble(num1) - Double.parseDouble(num2));
+                            op = "+";
                             num2 = "";
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                             break;
                         case "×":
                             num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num2));
+                            op = "+";
                             num2 = "";
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                             break;
                         case "÷":
-                            num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                            if (Double.parseDouble(num2) == 0) {
+                                num1 = "UNDEFINED";
+                                op = "";
+                            } else {
+                                num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                                op = "+";
+                                if (num1.length() > 7) {
+                                    num1 = num1.substring(0, 8);
+                                }
+                            }
                             num2 = "";
                             break;
                     }
-                    if (num1.length() > 7) {
-                        num1 = num1.substring(0, 8);
-                    }
                 }
-                op = "+";
+                else if (num1.equals("UNDEFINED")) {
+                    op = "";
+                }
+                else {
+                    op = "+";
+                }
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnSub) {
                 if (num1.equals("")) {
                     num1 = "0";
+                    op = "-";
                 }
                 if (!num1.equals("") && !num2.equals("")) {
                     switch (op) {
                         case "+":
                             num1 = Double.toString(Double.parseDouble(num1) + Double.parseDouble(num2));
+                            op = "-";
                             num2 = "";
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                             break;
                         case "-":
                             num1 = Double.toString(Double.parseDouble(num1) - Double.parseDouble(num2));
+                            op = "-";
                             num2 = "";
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                             break;
                         case "×":
                             num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num2));
+                            op = "-";
                             num2 = "";
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                             break;
                         case "÷":
-                            num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                            if (Double.parseDouble(num2) == 0) {
+                                num1 = "UNDEFINED";
+                                op = "";
+                            } else {
+                                num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                                op = "-";
+                                if (num1.length() > 7) {
+                                    num1 = num1.substring(0, 8);
+                                }
+                            }
                             num2 = "";
                             break;
                     }
-                    if (num1.length() > 7) {
-                        num1 = num1.substring(0, 8);
-                    }
                 }
-                op = "-";
+                else if (num1.equals("UNDEFINED")) {
+                    op = "";
+                }
+                else {
+                    op = "-";
+                }
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnMult) {
                 if (num1.equals("")) {
                     num1 = "0";
+                    op = "×";
                 }
                 if (!num1.equals("") && !num2.equals("")) {
                     switch (op) {
                         case "+":
                             num1 = Double.toString(Double.parseDouble(num1) + Double.parseDouble(num2));
+                            op = "×";
                             num2 = "";
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                             break;
                         case "-":
                             num1 = Double.toString(Double.parseDouble(num1) - Double.parseDouble(num2));
+                            op = "×";
                             num2 = "";
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                             break;
                         case "×":
                             num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num2));
+                            op = "×";
                             num2 = "";
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                             break;
                         case "÷":
-                            num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                            if (Double.parseDouble(num2) == 0) {
+                                num1 = "UNDEFINED";
+                                op = "";
+                            } else {
+                                num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                                op = "×";
+                                if (num1.length() > 7) {
+                                    num1 = num1.substring(0, 8);
+                                }
+                            }
                             num2 = "";
                             break;
                     }
-                    if (num1.length() > 7) {
-                        num1 = num1.substring(0, 8);
-                    }
                 }
-                op = "×";
+                else if (num1.equals("UNDEFINED")) {
+                    op = "";
+                }
+                else {
+                    op = "×";
+                }
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnDiv) {
                 if (num1.equals("")) {
                     num1 = "0";
+                    op = "÷";
                 }
-                if (!num1.equals("") && !num2.equals("")) {
+                else if (!num1.equals("") && !num2.equals("")) {
                     switch (op) {
                         case "+":
                             num1 = Double.toString(Double.parseDouble(num1) + Double.parseDouble(num2));
+                            op = "÷";
                             num2 = "";
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                             break;
                         case "-":
                             num1 = Double.toString(Double.parseDouble(num1) - Double.parseDouble(num2));
+                            op = "÷";
                             num2 = "";
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                             break;
                         case "×":
                             num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num2));
+                            op = "÷";
                             num2 = "";
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                             break;
                         case "÷":
-                            num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                            if (Double.parseDouble(num2) == 0) {
+                                num1 = "UNDEFINED";
+                                op = "";
+                            } else {
+                                num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                                op = "÷";
+                                if (num1.length() > 7) {
+                                    num1 = num1.substring(0, 8);
+                                }
+                            }
                             num2 = "";
                             break;
                     }
-                    if (num1.length() > 7) {
-                        num1 = num1.substring(0, 8);
-                    }
                 }
-                op = "÷";
+                else if (num1.equals("UNDEFINED")) {
+                    op = "";
+                }
+                else {
+                    op = "÷";
+                }
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnEq && !num1.equals("") && !num2.equals("")) {
                 switch (op) {
@@ -383,9 +487,14 @@ public class GUI extends Frame implements WindowListener {
                         txt.setText(num1);
                         break;
                     case "÷":
-                        num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
-                        if (num1.length() > 7) {
-                            num1 = num1.substring(0, 8);
+                        if (Double.parseDouble(num2) == 0) {
+                            num1 = "UNDEFINED";
+                        }
+                        else {
+                            num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
                         }
                         txt.setText(num1);
                         break;
@@ -394,8 +503,11 @@ public class GUI extends Frame implements WindowListener {
                 num2 = "";
             } else if (source == btnPN) {
                 if (!num1.equals("") && op.equals("")) {
-                    num1 = Double.toString(Double.parseDouble(num1) * (-1));
-                    txt.setText(num1);
+                    try {
+                        num1 = Double.toString(Double.parseDouble(num1) * (-1));
+                        txt.setText(num1);
+                    }
+                    catch (Exception e) {}
                 } else if (!num2.equals("")) {
                     num2 = Double.toString(Double.parseDouble(num2) * (-1));
                     txt.setText(num1 + " " + op + " " + num2);
@@ -404,7 +516,9 @@ public class GUI extends Frame implements WindowListener {
                 if (op.equals("") && !num1.contains(".")) {
                     if (num1.equals("")) {
                         num1 = "0.";
-                    } else {
+                    }
+                    else if (num1.equals("UNDEFINED")) {}
+                    else {
                         num1 += ".";
                     }
                 } else if (!op.equals("") && !num2.contains(".")) {
@@ -428,6 +542,15 @@ public class GUI extends Frame implements WindowListener {
                 num2 = "";
                 txt.setText(num1 + " " + op + " " + num2);
             }
+        }
+    }
+
+    private class BtnListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            Button source = (Button) evt.getSource();
+            Calculations a = new Calculations();
+            a.calculate(source);
         }
     }
 
