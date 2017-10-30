@@ -3,7 +3,7 @@ import java.awt.event.*;
 import java.lang.*;
 
 public class GUI extends Frame implements WindowListener {
-    private TextField upperBorder, txt, lowerBorder;
+    private TextField txt;
     private Button btn7, btn8, btn9, btnDiv, btn4, btn5, btn6, btnMult, btn1, btn2, btn3, btnSub, btnPN, btn0, btnDec, btnAdd, btnCE, btnC, btnEq;
     private String num1 = "";
     private String num2 = "";
@@ -17,7 +17,7 @@ public class GUI extends Frame implements WindowListener {
         Font borderFont = new Font("SansSerif", Font.BOLD, 1);
         Font btnFont = new Font("SansSerif", Font.BOLD, 70);
 
-        upperBorder = new TextField(396);
+        TextField upperBorder = new TextField(396);
         upperBorder.setFont(borderFont);
         upperBorder.setBackground(Color.lightGray);
         upperBorder.setEditable(false);
@@ -28,7 +28,7 @@ public class GUI extends Frame implements WindowListener {
         txt.setEditable(false);
         add(txt);
 
-        lowerBorder = new TextField(396);
+        TextField lowerBorder = new TextField(396);
         lowerBorder.setFont(borderFont);
         lowerBorder.setBackground(Color.lightGray);
         lowerBorder.setEditable(false);
@@ -156,11 +156,11 @@ public class GUI extends Frame implements WindowListener {
     }
 
     public static void main(String[] args) {
-        GUI calc = new GUI();
+        new GUI();
     }
 
     public class Calculations {
-        public void calculate(Button source) {
+        void calculate(Button source) {
             if (source == btn0) {
                 if (op.equals("")) {
                     if (!num1.equals("UNDEFINED")) {
@@ -507,19 +507,22 @@ public class GUI extends Frame implements WindowListener {
                         num1 = Double.toString(Double.parseDouble(num1) * (-1));
                         txt.setText(num1);
                     }
-                    catch (Exception e) {}
+                    catch (Exception ignored) {}
                 } else if (!num2.equals("")) {
                     num2 = Double.toString(Double.parseDouble(num2) * (-1));
                     txt.setText(num1 + " " + op + " " + num2);
                 }
             } else if (source == btnDec) {
                 if (op.equals("") && !num1.contains(".")) {
-                    if (num1.equals("")) {
-                        num1 = "0.";
-                    }
-                    else if (num1.equals("UNDEFINED")) {}
-                    else {
-                        num1 += ".";
+                    switch (num1) {
+                        case "":
+                            num1 = "0.";
+                            break;
+                        case "UNDEFINED":
+                            break;
+                        default:
+                            num1 += ".";
+                            break;
                     }
                 } else if (!op.equals("") && !num2.contains(".")) {
                     if (num2.equals("")) {
