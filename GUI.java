@@ -4,7 +4,7 @@ import java.lang.*;
 
 public class GUI extends Frame implements WindowListener {
     private TextField txt;
-    private Button btn7, btn8, btn9, btnDiv, btn4, btn5, btn6, btnMult, btn1, btn2, btn3, btnSub, btnPN, btn0, btnDec, btnAdd, btnCE, btnC, btnEq, btnSqr, btnSqrRt, btnRecip;
+    private Button btn7, btn8, btn9, btnDiv, btn4, btn5, btn6, btnMult, btn1, btn2, btn3, btnSub, btnPN, btn0, btnDec, btnAdd, btnCE, btnC, btnEq, btnSqr, btnSqrRt, btnRecip, btnDel;
     private String num1 = "";
     private String num2 = "";
     private String op = "";
@@ -34,15 +34,20 @@ public class GUI extends Frame implements WindowListener {
         lowerBorder.setEditable(false);
         add(lowerBorder);
 
-        btnCE = new Button("   CE   ");
+        btnCE = new Button(" CE ");
         btnCE.setFont(btnFont);
         btnCE.setBackground(Color.red);
         add(btnCE);
 
-        btnC = new Button("   C   ");
+        btnC = new Button(" C ");
         btnC.setFont(btnFont);
         btnC.setBackground(Color.red);
         add(btnC);
+
+        btnDel = new Button("Del ");
+        btnDel.setFont(btnFont);
+        btnDel.setBackground(Color.red);
+        add(btnDel);
 
         Color colorOp = new Color(255, 140, 0);
 
@@ -164,6 +169,7 @@ public class GUI extends Frame implements WindowListener {
         btnSqr.addActionListener(listener);
         btnSqrRt.addActionListener(listener);
         btnRecip.addActionListener(listener);
+        btnDel.addActionListener(listener);
 
         addWindowListener(this);
 
@@ -590,6 +596,20 @@ public class GUI extends Frame implements WindowListener {
                     num2 = Double.toString(1 / Double.parseDouble(num2));
                     txt.setText(num1 + " " + op + " " + num2);
                 }
+            }
+            else if (source == btnDel) {
+                if (op.equals("")) {
+                    try {
+                        num1 = num1.substring(0, num1.length() - 1);
+                    }
+                    catch (Exception ignored) {}
+                } else if (!op.equals("")) {
+                    try {
+                        num2 = num2.substring(0, num2.length() - 1);
+                    }
+                    catch (Exception ignored) {}
+                }
+                txt.setText(num1 + " " + op + " " + num2);
             }
         }
     }
