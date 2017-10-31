@@ -4,7 +4,7 @@ import java.lang.*;
 
 public class GUI extends Frame implements WindowListener {
     private TextField txt;
-    private Button btn7, btn8, btn9, btnDiv, btn4, btn5, btn6, btnMult, btn1, btn2, btn3, btnSub, btnPN, btn0, btnDec, btnAdd, btnCE, btnC, btnEq;
+    private Button btn7, btn8, btn9, btnDiv, btn4, btn5, btn6, btnMult, btn1, btn2, btn3, btnSub, btnPN, btn0, btnDec, btnAdd, btnCE, btnC, btnEq, btnSqr, btnSqrRt, btnRecip;
     private String num1 = "";
     private String num2 = "";
     private String op = "";
@@ -34,17 +34,32 @@ public class GUI extends Frame implements WindowListener {
         lowerBorder.setEditable(false);
         add(lowerBorder);
 
-        btnCE = new Button(" CE ");
+        btnCE = new Button("   CE   ");
         btnCE.setFont(btnFont);
         btnCE.setBackground(Color.red);
         add(btnCE);
 
-        btnC = new Button("  C  ");
+        btnC = new Button("   C   ");
         btnC.setFont(btnFont);
         btnC.setBackground(Color.red);
         add(btnC);
 
         Color colorOp = new Color(255, 140, 0);
+
+        btnSqrRt = new Button("√x");
+        btnSqrRt.setFont(btnFont);
+        btnSqrRt.setBackground(colorOp);
+        add(btnSqrRt);
+
+        btnSqr = new Button(" x²");
+        btnSqr.setFont(btnFont);
+        btnSqr.setBackground(colorOp);
+        add(btnSqr);
+
+        btnRecip = new Button("1/x");
+        btnRecip.setFont(btnFont);
+        btnRecip.setBackground(colorOp);
+        add(btnRecip);
 
         btnDiv = new Button(" ÷ ");
         btnDiv.setFont(btnFont);
@@ -146,12 +161,16 @@ public class GUI extends Frame implements WindowListener {
         btnCE.addActionListener(listener);
         btnC.addActionListener(listener);
         btnEq.addActionListener(listener);
+        btnSqr.addActionListener(listener);
+        btnSqrRt.addActionListener(listener);
+        btnRecip.addActionListener(listener);
 
         addWindowListener(this);
 
         setTitle("Calculator");
-        setSize(490, 700);
+        setSize(460, 750);
         setBackground(Color.darkGray);
+        setResizable(false);
         setVisible(true);
     }
 
@@ -544,6 +563,33 @@ public class GUI extends Frame implements WindowListener {
                 op = "";
                 num2 = "";
                 txt.setText(num1 + " " + op + " " + num2);
+            }
+            else if (source == btnSqr) {
+                if (!num1.equals("") && op.equals("")) {
+                    num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num1));
+                    txt.setText(num1);
+                } else if (!num2.equals("")) {
+                    num2 = Double.toString(Double.parseDouble(num2) * Double.parseDouble(num2));
+                    txt.setText(num1 + " " + op + " " + num2);
+                }
+            }
+            else if (source == btnSqrRt) {
+                if (!num1.equals("") && op.equals("")) {
+                    num1 = Double.toString(Math.sqrt(Double.parseDouble(num1)));
+                    txt.setText(num1);
+                } else if (!num2.equals("")) {
+                    num2 = Double.toString(Math.sqrt(Double.parseDouble(num2)));
+                    txt.setText(num1 + " " + op + " " + num2);
+                }
+            }
+            else if (source == btnRecip) {
+                if (!num1.equals("") && op.equals("")) {
+                    num1 = Double.toString(1 / Double.parseDouble(num1));
+                    txt.setText(num1);
+                } else if (!num2.equals("")) {
+                    num2 = Double.toString(1 / Double.parseDouble(num2));
+                    txt.setText(num1 + " " + op + " " + num2);
+                }
             }
         }
     }
