@@ -186,9 +186,15 @@ public class GUI extends Frame implements WindowListener {
 
     public class Calculations {
         void calculate(Button source) {
+            String x;
             if (source == btn0) {
                 if (op.equals("")) {
-                    if (!num1.equals("UNDEFINED")) {
+                    try {
+                        x = "" + Double.parseDouble(num1);
+                        num1 += "0";
+                    }
+                    catch (Exception ignored) {}
+                    if (num1.equals("")) {
                         num1 += "0";
                     }
                 } else {
@@ -197,7 +203,12 @@ public class GUI extends Frame implements WindowListener {
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn1) {
                 if (op.equals("")) {
-                    if (!num1.equals("UNDEFINED")) {
+                    try {
+                        x = "" + Double.parseDouble(num1);
+                        num1 += "1";
+                    }
+                    catch (Exception ignored) {}
+                    if (num1.equals("")) {
                         num1 += "1";
                     }
                 } else {
@@ -206,7 +217,12 @@ public class GUI extends Frame implements WindowListener {
                     txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn2) {
                 if (op.equals("")) {
-                    if (!num1.equals("UNDEFINED")) {
+                    try {
+                        x = "" + Double.parseDouble(num1);
+                        num1 += "2";
+                    }
+                    catch (Exception ignored) {}
+                    if (num1.equals("")) {
                         num1 += "2";
                     }
                 } else {
@@ -215,7 +231,12 @@ public class GUI extends Frame implements WindowListener {
                     txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn3) {
                 if (op.equals("")) {
-                    if (!num1.equals("UNDEFINED")) {
+                    try {
+                        x = "" + Double.parseDouble(num1);
+                        num1 += "3";
+                    }
+                    catch (Exception ignored) {}
+                    if (num1.equals("")) {
                         num1 += "3";
                     }
                 } else {
@@ -224,7 +245,12 @@ public class GUI extends Frame implements WindowListener {
                     txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn4) {
                 if (op.equals("")) {
-                    if (!num1.equals("UNDEFINED")) {
+                    try {
+                        x = "" + Double.parseDouble(num1);
+                        num1 += "4";
+                    }
+                    catch (Exception ignored) {}
+                    if (num1.equals("")) {
                         num1 += "4";
                     }
                 } else {
@@ -233,7 +259,12 @@ public class GUI extends Frame implements WindowListener {
                     txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn5) {
                 if (op.equals("")) {
-                    if (!num1.equals("UNDEFINED")) {
+                    try {
+                        x = "" + Double.parseDouble(num1);
+                        num1 += "5";
+                    }
+                    catch (Exception ignored) {}
+                    if (num1.equals("")) {
                         num1 += "5";
                     }
                 } else {
@@ -242,7 +273,12 @@ public class GUI extends Frame implements WindowListener {
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn6) {
                 if (op.equals("")) {
-                    if (!num1.equals("UNDEFINED")) {
+                    try {
+                        x = "" + Double.parseDouble(num1);
+                        num1 += "6";
+                    }
+                    catch (Exception ignored) {}
+                    if (num1.equals("")) {
                         num1 += "6";
                     }
                 } else {
@@ -251,7 +287,12 @@ public class GUI extends Frame implements WindowListener {
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn7) {
                 if (op.equals("")) {
-                    if (!num1.equals("UNDEFINED")) {
+                    try {
+                        x = "" + Double.parseDouble(num1);
+                        num1 += "7";
+                    }
+                    catch (Exception ignored) {}
+                    if (num1.equals("")) {
                         num1 += "7";
                     }
                 } else {
@@ -260,7 +301,12 @@ public class GUI extends Frame implements WindowListener {
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn8) {
                 if (op.equals("")) {
-                    if (!num1.equals("UNDEFINED")) {
+                    try {
+                        x = "" + Double.parseDouble(num1);
+                        num1 += "8";
+                    }
+                    catch (Exception ignored) {}
+                    if (num1.equals("")) {
                         num1 += "8";
                     }
                 } else {
@@ -269,7 +315,12 @@ public class GUI extends Frame implements WindowListener {
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn9) {
                 if (op.equals("")) {
-                    if (!num1.equals("UNDEFINED")) {
+                    try {
+                        x = "" + Double.parseDouble(num1);
+                        num1 += "9";
+                    }
+                    catch (Exception ignored) {}
+                    if (num1.equals("")) {
                         num1 += "9";
                     }
                 } else {
@@ -571,39 +622,86 @@ public class GUI extends Frame implements WindowListener {
                 txt.setText(num1 + " " + op + " " + num2);
             }
             else if (source == btnSqr) {
-                if (!num1.equals("") && op.equals("")) {
-                    num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num1));
-                    txt.setText(num1);
-                } else if (!num2.equals("")) {
-                    num2 = Double.toString(Double.parseDouble(num2) * Double.parseDouble(num2));
-                    txt.setText(num1 + " " + op + " " + num2);
+                try {
+                    if (!num1.equals("") && op.equals("")) {
+                        num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num1));
+                        txt.setText(num1);
+                    } else if (!num2.equals("")) {
+                        num2 = Double.toString(Double.parseDouble(num2) * Double.parseDouble(num2));
+                        txt.setText(num1 + " " + op + " " + num2);
+                    }
                 }
+                catch (Exception ignored) {}
             }
             else if (source == btnSqrRt) {
-                if (!num1.equals("") && op.equals("")) {
-                    num1 = Double.toString(Math.sqrt(Double.parseDouble(num1)));
-                    txt.setText(num1);
-                } else if (!num2.equals("")) {
-                    num2 = Double.toString(Math.sqrt(Double.parseDouble(num2)));
-                    txt.setText(num1 + " " + op + " " + num2);
+                try {
+                    if (!num1.equals("") && op.equals("")) {
+                        if (Double.parseDouble(num1) < 0) {
+                            num1 = "UNDEFINED";
+                        }
+                        else {
+                            num1 = Double.toString(Math.sqrt(Double.parseDouble(num1)));
+                        }
+                        txt.setText(num1);
+                    } else if (!num2.equals("")) {
+                        if (Double.parseDouble(num2) < 0) {
+                            num2 = "UNDEFINED";
+                        }
+                        else {
+                            num2 = Double.toString(Math.sqrt(Double.parseDouble(num2)));
+                        }
+                        txt.setText(num1 + " " + op + " " + num2);
+                    }
                 }
+                catch (Exception ignored) {}
             }
             else if (source == btnRecip) {
-                if (!num1.equals("") && op.equals("")) {
-                    num1 = Double.toString(1 / Double.parseDouble(num1));
-                    txt.setText(num1);
-                } else if (!num2.equals("")) {
-                    num2 = Double.toString(1 / Double.parseDouble(num2));
-                    txt.setText(num1 + " " + op + " " + num2);
+                try {
+                    if (!num1.equals("") && op.equals("")) {
+                        if (Double.parseDouble(num1) == 0) {
+                            num1 = "UNDEFINED";
+                        }
+                        else {
+                            num1 = Double.toString(1 / Double.parseDouble(num1));
+                            if (num1.length() > 7) {
+                                num1 = num1.substring(0, 8);
+                            }
+                        }
+                        txt.setText(num1);
+                    } else if (!num2.equals("")) {
+                        if (Double.parseDouble(num2) == 0) {
+                            num2 = "UNDEFINED";
+                        }
+                        else {
+                            num2 = Double.toString(1 / Double.parseDouble(num2));
+                            if (num2.length() > 7) {
+                                num2 = num2.substring(0, 8);
+                            }
+                        }
+                        txt.setText(num1 + " " + op + " " + num2);
+                    }
                 }
+                catch (Exception ignored) {}
             }
             else if (source == btnDel) {
                 if (op.equals("")) {
+                    try {
+                        x = "" + Double.parseDouble(num1);
+                    }
+                    catch (Exception e) {
+                        num1 = "";
+                    }
                     try {
                         num1 = num1.substring(0, num1.length() - 1);
                     }
                     catch (Exception ignored) {}
                 } else if (!op.equals("")) {
+                    try {
+                        num2 = "" + Double.parseDouble(num2);
+                    }
+                    catch (Exception e) {
+                        num2 = "";
+                    }
                     try {
                         num2 = num2.substring(0, num2.length() - 1);
                     }
