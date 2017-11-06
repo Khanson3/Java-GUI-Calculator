@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.*;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class GUI extends Frame implements WindowListener {
     private TextField txt;
@@ -186,6 +188,9 @@ public class GUI extends Frame implements WindowListener {
 
     public class Calculations {
         void calculate(Button source) {
+            DecimalFormat df = new DecimalFormat("#.###");
+            df.setRoundingMode(RoundingMode.HALF_UP);
+            DecimalFormat big = new DecimalFormat("0.###E0");
             String x;
             if (source == btn0) {
                 if (op.equals("")) {
@@ -335,39 +340,27 @@ public class GUI extends Frame implements WindowListener {
                 if (!num1.equals("") && !num2.equals("")) {
                     switch (op) {
                         case "+":
-                            num1 = Double.toString(Double.parseDouble(num1) + Double.parseDouble(num2));
+                            num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
                             op = "+";
                             num2 = "";
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
                             break;
                         case "-":
-                            num1 = Double.toString(Double.parseDouble(num1) - Double.parseDouble(num2));
+                            num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
                             op = "+";
                             num2 = "";
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
                             break;
                         case "×":
-                            num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num2));
+                            num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
                             op = "+";
                             num2 = "";
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
                             break;
                         case "÷":
                             if (Double.parseDouble(num2) == 0) {
                                 num1 = "UNDEFINED";
                                 op = "";
                             } else {
-                                num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                                num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
                                 op = "+";
-                                if (num1.length() > 7) {
-                                    num1 = num1.substring(0, 8);
-                                }
                             }
                             num2 = "";
                             break;
@@ -379,6 +372,9 @@ public class GUI extends Frame implements WindowListener {
                 else {
                     op = "+";
                 }
+                if (num1.length() > 6 && !num1.equals("UNDEFINED")) {
+                    num1 = "" + big.format(Double.parseDouble(num1));
+                }
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnSub) {
                 if (num1.equals("")) {
@@ -388,39 +384,27 @@ public class GUI extends Frame implements WindowListener {
                 if (!num1.equals("") && !num2.equals("")) {
                     switch (op) {
                         case "+":
-                            num1 = Double.toString(Double.parseDouble(num1) + Double.parseDouble(num2));
+                            num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
                             op = "-";
                             num2 = "";
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
                             break;
                         case "-":
-                            num1 = Double.toString(Double.parseDouble(num1) - Double.parseDouble(num2));
+                            num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
                             op = "-";
                             num2 = "";
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
                             break;
                         case "×":
-                            num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num2));
+                            num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
                             op = "-";
                             num2 = "";
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
                             break;
                         case "÷":
                             if (Double.parseDouble(num2) == 0) {
                                 num1 = "UNDEFINED";
                                 op = "";
                             } else {
-                                num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                                num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
                                 op = "-";
-                                if (num1.length() > 7) {
-                                    num1 = num1.substring(0, 8);
-                                }
                             }
                             num2 = "";
                             break;
@@ -431,6 +415,9 @@ public class GUI extends Frame implements WindowListener {
                 }
                 else {
                     op = "-";
+                }
+                if (num1.length() > 6 && !num1.equals("UNDEFINED")) {
+                    num1 = "" + big.format(Double.parseDouble(num1));
                 }
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnMult) {
@@ -441,39 +428,27 @@ public class GUI extends Frame implements WindowListener {
                 if (!num1.equals("") && !num2.equals("")) {
                     switch (op) {
                         case "+":
-                            num1 = Double.toString(Double.parseDouble(num1) + Double.parseDouble(num2));
+                            num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
                             op = "×";
                             num2 = "";
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
                             break;
                         case "-":
-                            num1 = Double.toString(Double.parseDouble(num1) - Double.parseDouble(num2));
+                            num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
                             op = "×";
                             num2 = "";
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
                             break;
                         case "×":
-                            num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num2));
+                            num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
                             op = "×";
                             num2 = "";
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
                             break;
                         case "÷":
                             if (Double.parseDouble(num2) == 0) {
                                 num1 = "UNDEFINED";
                                 op = "";
                             } else {
-                                num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                                num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
                                 op = "×";
-                                if (num1.length() > 7) {
-                                    num1 = num1.substring(0, 8);
-                                }
                             }
                             num2 = "";
                             break;
@@ -485,6 +460,9 @@ public class GUI extends Frame implements WindowListener {
                 else {
                     op = "×";
                 }
+                if (num1.length() > 6 && !num1.equals("UNDEFINED")) {
+                    num1 = "" + big.format(Double.parseDouble(num1));
+                }
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnDiv) {
                 if (num1.equals("")) {
@@ -494,39 +472,27 @@ public class GUI extends Frame implements WindowListener {
                 else if (!num1.equals("") && !num2.equals("")) {
                     switch (op) {
                         case "+":
-                            num1 = Double.toString(Double.parseDouble(num1) + Double.parseDouble(num2));
+                            num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
                             op = "÷";
                             num2 = "";
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
                             break;
                         case "-":
-                            num1 = Double.toString(Double.parseDouble(num1) - Double.parseDouble(num2));
+                            num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
                             op = "÷";
                             num2 = "";
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
                             break;
                         case "×":
-                            num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num2));
+                            num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
                             op = "÷";
                             num2 = "";
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
                             break;
                         case "÷":
                             if (Double.parseDouble(num2) == 0) {
                                 num1 = "UNDEFINED";
                                 op = "";
                             } else {
-                                num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
+                                num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
                                 op = "÷";
-                                if (num1.length() > 7) {
-                                    num1 = num1.substring(0, 8);
-                                }
                             }
                             num2 = "";
                             break;
@@ -538,43 +504,34 @@ public class GUI extends Frame implements WindowListener {
                 else {
                     op = "÷";
                 }
+                if (num1.length() > 6 && !num1.equals("UNDEFINED")) {
+                    num1 = "" + big.format(Double.parseDouble(num1));
+                }
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnEq && !num1.equals("") && !num2.equals("")) {
                 switch (op) {
                     case "+":
-                        num1 = Double.toString(Double.parseDouble(num1) + Double.parseDouble(num2));
-                        if (num1.length() > 7) {
-                            num1 = num1.substring(0, 8);
-                        }
-                        txt.setText(num1);
+                        num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
                         break;
                     case "-":
-                        num1 = Double.toString(Double.parseDouble(num1) - Double.parseDouble(num2));
-                        if (num1.length() > 7) {
-                            num1 = num1.substring(0, 8);
-                        }
-                        txt.setText(num1);
+                        num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
                         break;
                     case "×":
-                        num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num2));
-                        if (num1.length() > 7) {
-                            num1 = num1.substring(0, 8);
-                        }
-                        txt.setText(num1);
+                        num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
                         break;
                     case "÷":
                         if (Double.parseDouble(num2) == 0) {
                             num1 = "UNDEFINED";
                         }
                         else {
-                            num1 = Double.toString(Double.parseDouble(num1) / Double.parseDouble(num2));
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
-                            }
+                            num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
                         }
-                        txt.setText(num1);
                         break;
                 }
+                if (num1.length() > 6 && !num1.equals("UNDEFINED")) {
+                    num1 = "" + big.format(Double.parseDouble(num1));
+                }
+                txt.setText(num1);
                 op = "";
                 num2 = "";
             } else if (source == btnPN) {
@@ -624,10 +581,16 @@ public class GUI extends Frame implements WindowListener {
             else if (source == btnSqr) {
                 try {
                     if (!num1.equals("") && op.equals("")) {
-                        num1 = Double.toString(Double.parseDouble(num1) * Double.parseDouble(num1));
+                        num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num1));
+                        if (num1.length() > 6) {
+                            num1 = "" + big.format(Double.parseDouble(num1));
+                        }
                         txt.setText(num1);
                     } else if (!num2.equals("")) {
-                        num2 = Double.toString(Double.parseDouble(num2) * Double.parseDouble(num2));
+                        num2 = "" + df.format(Double.parseDouble(num2) * Double.parseDouble(num2));
+                        if (num2.length() > 6) {
+                            num2 = "" + big.format(Double.parseDouble(num2));
+                        }
                         txt.setText(num1 + " " + op + " " + num2);
                     }
                 }
@@ -640,7 +603,10 @@ public class GUI extends Frame implements WindowListener {
                             num1 = "UNDEFINED";
                         }
                         else {
-                            num1 = Double.toString(Math.sqrt(Double.parseDouble(num1)));
+                            num1 = "" + df.format(Math.sqrt(Double.parseDouble(num1)));
+                            if (num1.length() > 6) {
+                                num1 = "" + big.format(Double.parseDouble(num1));
+                            }
                         }
                         txt.setText(num1);
                     } else if (!num2.equals("")) {
@@ -648,7 +614,10 @@ public class GUI extends Frame implements WindowListener {
                             num2 = "UNDEFINED";
                         }
                         else {
-                            num2 = Double.toString(Math.sqrt(Double.parseDouble(num2)));
+                            num2 = "" + df.format(Math.sqrt(Double.parseDouble(num2)));
+                            if (num2.length() > 6) {
+                                num2 = "" + big.format(Double.parseDouble(num2));
+                            }
                         }
                         txt.setText(num1 + " " + op + " " + num2);
                     }
@@ -662,9 +631,9 @@ public class GUI extends Frame implements WindowListener {
                             num1 = "UNDEFINED";
                         }
                         else {
-                            num1 = Double.toString(1 / Double.parseDouble(num1));
-                            if (num1.length() > 7) {
-                                num1 = num1.substring(0, 8);
+                            num1 = "" + df.format(1 / Double.parseDouble(num1));
+                            if (num1.length() > 6) {
+                                num1 = "" + big.format(Double.parseDouble(num1));
                             }
                         }
                         txt.setText(num1);
@@ -673,9 +642,9 @@ public class GUI extends Frame implements WindowListener {
                             num2 = "UNDEFINED";
                         }
                         else {
-                            num2 = Double.toString(1 / Double.parseDouble(num2));
-                            if (num2.length() > 7) {
-                                num2 = num2.substring(0, 8);
+                            num2 = "" + df.format(1 / Double.parseDouble(num2));
+                            if (num2.length() > 6) {
+                                num2 = "" + big.format(Double.parseDouble(num2));
                             }
                         }
                         txt.setText(num1 + " " + op + " " + num2);
@@ -697,7 +666,7 @@ public class GUI extends Frame implements WindowListener {
                     catch (Exception ignored) {}
                 } else if (!op.equals("")) {
                     try {
-                        num2 = "" + Double.parseDouble(num2);
+                        x = "" + Double.parseDouble(num2);
                     }
                     catch (Exception e) {
                         num2 = "";
