@@ -197,8 +197,8 @@ public class GUI extends Frame implements WindowListener {
                     try {
                         x = "" + Double.parseDouble(num1);
                         num1 += "0";
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                     if (num1.equals("")) {
                         num1 += "0";
                     }
@@ -211,64 +211,64 @@ public class GUI extends Frame implements WindowListener {
                     try {
                         x = "" + Double.parseDouble(num1);
                         num1 += "1";
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                     if (num1.equals("")) {
                         num1 += "1";
                     }
                 } else {
                     num2 += "1";
                 }
-                    txt.setText(num1 + " " + op + " " + num2);
+                txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn2) {
                 if (op.equals("")) {
                     try {
                         x = "" + Double.parseDouble(num1);
                         num1 += "2";
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                     if (num1.equals("")) {
                         num1 += "2";
                     }
                 } else {
                     num2 += "2";
                 }
-                    txt.setText(num1 + " " + op + " " + num2);
+                txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn3) {
                 if (op.equals("")) {
                     try {
                         x = "" + Double.parseDouble(num1);
                         num1 += "3";
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                     if (num1.equals("")) {
                         num1 += "3";
                     }
                 } else {
                     num2 += "3";
                 }
-                    txt.setText(num1 + " " + op + " " + num2);
+                txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn4) {
                 if (op.equals("")) {
                     try {
                         x = "" + Double.parseDouble(num1);
                         num1 += "4";
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                     if (num1.equals("")) {
                         num1 += "4";
                     }
                 } else {
                     num2 += "4";
                 }
-                    txt.setText(num1 + " " + op + " " + num2);
+                txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btn5) {
                 if (op.equals("")) {
                     try {
                         x = "" + Double.parseDouble(num1);
                         num1 += "5";
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                     if (num1.equals("")) {
                         num1 += "5";
                     }
@@ -281,8 +281,8 @@ public class GUI extends Frame implements WindowListener {
                     try {
                         x = "" + Double.parseDouble(num1);
                         num1 += "6";
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                     if (num1.equals("")) {
                         num1 += "6";
                     }
@@ -295,8 +295,8 @@ public class GUI extends Frame implements WindowListener {
                     try {
                         x = "" + Double.parseDouble(num1);
                         num1 += "7";
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                     if (num1.equals("")) {
                         num1 += "7";
                     }
@@ -309,8 +309,8 @@ public class GUI extends Frame implements WindowListener {
                     try {
                         x = "" + Double.parseDouble(num1);
                         num1 += "8";
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                     if (num1.equals("")) {
                         num1 += "8";
                     }
@@ -323,8 +323,8 @@ public class GUI extends Frame implements WindowListener {
                     try {
                         x = "" + Double.parseDouble(num1);
                         num1 += "9";
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                     if (num1.equals("")) {
                         num1 += "9";
                     }
@@ -333,202 +333,280 @@ public class GUI extends Frame implements WindowListener {
                 }
                 txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnAdd) {
-                if (num1.equals("")) {
-                    num1 = "0";
-                    op = "+";
-                }
-                if (!num1.equals("") && !num2.equals("")) {
-                    switch (op) {
-                        case "+":
-                            num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
-                            op = "+";
-                            num2 = "";
-                            break;
-                        case "-":
-                            num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
-                            op = "+";
-                            num2 = "";
-                            break;
-                        case "×":
-                            num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
-                            op = "+";
-                            num2 = "";
-                            break;
-                        case "÷":
-                            if (Double.parseDouble(num2) == 0) {
-                                num1 = "UNDEFINED";
-                                op = "";
-                            } else {
-                                num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
-                                op = "+";
-                            }
-                            num2 = "";
-                            break;
+                try {
+                    if (num1.equals("")) {
+                        num1 = "0";
+                        op = "+";
                     }
+                    if (Double.parseDouble(num1) > Double.MAX_VALUE || Double.parseDouble(num1) < -Double.MAX_VALUE) {
+                        num1 = "OVERFLOW";
+                        op = "";
+                        num2 = "";
+                    } else {
+                        if (!num1.equals("") && !num2.equals("")) {
+                            try {
+                                switch (op) {
+                                    case "+":
+                                        num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
+                                        op = "+";
+                                        num2 = "";
+                                        break;
+                                    case "-":
+                                        num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
+                                        op = "+";
+                                        num2 = "";
+                                        break;
+                                    case "×":
+                                        num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
+                                        op = "+";
+                                        num2 = "";
+                                        break;
+                                    case "÷":
+                                        if (Double.parseDouble(num2) == 0) {
+                                            num1 = "UNDEFINED";
+                                            op = "";
+                                        } else {
+                                            num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
+                                            op = "+";
+                                        }
+                                        num2 = "";
+                                        break;
+                                }
+                            } catch (Exception e) {
+                                num1 = "OVERFLOW";
+                                op = "";
+                                num2 = "";
+                            }
+                        } else if (num1.equals("UNDEFINED")) {
+                            op = "";
+                        } else {
+                            op = "+";
+                        }
+                    }
+                    if (num1.equals("∞") || num1.equals("-∞") || num2.equals("∞") || num2.equals("-∞")) {
+                        num1 = "OVERFLOW";
+                        op = "";
+                        num2 = "";
+                    }
+                    if (num1.length() > 6 && !num1.equals("UNDEFINED") && !num1.equals("OVERFLOW")) {
+                        num1 = "" + big.format(Double.parseDouble(num1));
+                    }
+                    txt.setText(num1 + " " + op + " " + num2);
+                } catch (Exception ignored) {
                 }
-                else if (num1.equals("UNDEFINED")) {
-                    op = "";
-                }
-                else {
-                    op = "+";
-                }
-                if (num1.length() > 6 && !num1.equals("UNDEFINED")) {
-                    num1 = "" + big.format(Double.parseDouble(num1));
-                }
-                txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnSub) {
-                if (num1.equals("")) {
-                    num1 = "0";
-                    op = "-";
-                }
-                if (!num1.equals("") && !num2.equals("")) {
-                    switch (op) {
-                        case "+":
-                            num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
-                            op = "-";
-                            num2 = "";
-                            break;
-                        case "-":
-                            num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
-                            op = "-";
-                            num2 = "";
-                            break;
-                        case "×":
-                            num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
-                            op = "-";
-                            num2 = "";
-                            break;
-                        case "÷":
-                            if (Double.parseDouble(num2) == 0) {
-                                num1 = "UNDEFINED";
-                                op = "";
-                            } else {
-                                num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
-                                op = "-";
-                            }
-                            num2 = "";
-                            break;
+                try {
+                    if (num1.equals("")) {
+                        num1 = "0";
+                        op = "-";
                     }
+                    if (Double.parseDouble(num1) > Double.MAX_VALUE || Double.parseDouble(num1) < -Double.MAX_VALUE) {
+                        num1 = "OVERFLOW";
+                        op = "";
+                        num2 = "";
+                    } else {
+                        if (!num1.equals("") && !num2.equals("")) {
+                            try {
+                                switch (op) {
+                                    case "+":
+                                        num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
+                                        op = "-";
+                                        num2 = "";
+                                        break;
+                                    case "-":
+                                        num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
+                                        op = "-";
+                                        num2 = "";
+                                        break;
+                                    case "×":
+                                        num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
+                                        op = "-";
+                                        num2 = "";
+                                        break;
+                                    case "÷":
+                                        if (Double.parseDouble(num2) == 0) {
+                                            num1 = "UNDEFINED";
+                                            op = "";
+                                        } else {
+                                            num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
+                                            op = "-";
+                                        }
+                                        num2 = "";
+                                        break;
+                                }
+                            } catch (Exception e) {
+                                num1 = "OVERFLOW";
+                                op = "";
+                                num2 = "";
+                            }
+                        } else if (num1.equals("UNDEFINED")) {
+                            op = "";
+                        } else {
+                            op = "-";
+                        }
+                    }
+                    if (num1.equals("∞") || num1.equals("-∞") || num2.equals("∞") || num2.equals("-∞")) {
+                        num1 = "OVERFLOW";
+                        op = "";
+                        num2 = "";
+                    }
+                    if (num1.length() > 6 && !num1.equals("UNDEFINED") && !num1.equals("OVERFLOW")) {
+                        num1 = "" + big.format(Double.parseDouble(num1));
+                    }
+                    txt.setText(num1 + " " + op + " " + num2);
+                } catch (Exception ignored) {
                 }
-                else if (num1.equals("UNDEFINED")) {
-                    op = "";
-                }
-                else {
-                    op = "-";
-                }
-                if (num1.length() > 6 && !num1.equals("UNDEFINED")) {
-                    num1 = "" + big.format(Double.parseDouble(num1));
-                }
-                txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnMult) {
-                if (num1.equals("")) {
-                    num1 = "0";
-                    op = "×";
-                }
-                if (!num1.equals("") && !num2.equals("")) {
-                    switch (op) {
-                        case "+":
-                            num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
-                            op = "×";
-                            num2 = "";
-                            break;
-                        case "-":
-                            num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
-                            op = "×";
-                            num2 = "";
-                            break;
-                        case "×":
-                            num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
-                            op = "×";
-                            num2 = "";
-                            break;
-                        case "÷":
-                            if (Double.parseDouble(num2) == 0) {
-                                num1 = "UNDEFINED";
-                                op = "";
-                            } else {
-                                num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
-                                op = "×";
-                            }
-                            num2 = "";
-                            break;
+                try {
+                    if (num1.equals("")) {
+                        num1 = "0";
+                        op = "×";
                     }
+                    if (Double.parseDouble(num1) > Double.MAX_VALUE || Double.parseDouble(num1) < -Double.MAX_VALUE) {
+                        num1 = "OVERFLOW";
+                        op = "";
+                        num2 = "";
+                    } else {
+                        if (!num1.equals("") && !num2.equals("")) {
+                            try {
+                                switch (op) {
+                                    case "+":
+                                        num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
+                                        op = "×";
+                                        num2 = "";
+                                        break;
+                                    case "-":
+                                        num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
+                                        op = "×";
+                                        num2 = "";
+                                        break;
+                                    case "×":
+                                        num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
+                                        op = "×";
+                                        num2 = "";
+                                        break;
+                                    case "÷":
+                                        if (Double.parseDouble(num2) == 0) {
+                                            num1 = "UNDEFINED";
+                                            op = "";
+                                        } else {
+                                            num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
+                                            op = "×";
+                                        }
+                                        num2 = "";
+                                        break;
+                                }
+                            } catch (Exception e) {
+                                num1 = "OVERFLOW";
+                                op = "";
+                                num2 = "";
+                            }
+                        } else if (num1.equals("UNDEFINED")) {
+                            op = "";
+                        } else {
+                            op = "×";
+                        }
+                    }
+                    if (num1.equals("∞") || num1.equals("-∞") || num2.equals("∞") || num2.equals("-∞")) {
+                        num1 = "OVERFLOW";
+                        op = "";
+                        num2 = "";
+                    }
+                    if (num1.length() > 6 && !num1.equals("UNDEFINED") && !num1.equals("OVERFLOW")) {
+                        num1 = "" + big.format(Double.parseDouble(num1));
+                    }
+                    txt.setText(num1 + " " + op + " " + num2);
+                } catch (Exception ignored) {
                 }
-                else if (num1.equals("UNDEFINED")) {
-                    op = "";
-                }
-                else {
-                    op = "×";
-                }
-                if (num1.length() > 6 && !num1.equals("UNDEFINED")) {
-                    num1 = "" + big.format(Double.parseDouble(num1));
-                }
-                txt.setText(num1 + " " + op + " " + num2);
             } else if (source == btnDiv) {
-                if (num1.equals("")) {
-                    num1 = "0";
-                    op = "÷";
+                try {
+                    if (num1.equals("")) {
+                        num1 = "0";
+                        op = "÷";
+                    }
+                    if (Double.parseDouble(num1) > Double.MAX_VALUE || Double.parseDouble(num1) < -Double.MAX_VALUE) {
+                        num1 = "OVERFLOW";
+                        op = "";
+                        num2 = "";
+                    } else {
+                        if (!num1.equals("") && !num2.equals("")) {
+                            try {
+                                switch (op) {
+                                    case "+":
+                                        num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
+                                        op = "÷";
+                                        num2 = "";
+                                        break;
+                                    case "-":
+                                        num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
+                                        op = "÷";
+                                        num2 = "";
+                                        break;
+                                    case "×":
+                                        num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
+                                        op = "÷";
+                                        num2 = "";
+                                        break;
+                                    case "÷":
+                                        if (Double.parseDouble(num2) == 0) {
+                                            num1 = "UNDEFINED";
+                                            op = "";
+                                        } else {
+                                            num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
+                                            op = "÷";
+                                        }
+                                        num2 = "";
+                                        break;
+                                }
+                            } catch (Exception e) {
+                                num1 = "OVERFLOW";
+                                op = "";
+                                num2 = "";
+                            }
+                        } else if (num1.equals("UNDEFINED")) {
+                            op = "";
+                        } else {
+                            op = "÷";
+                        }
+                    }
+                    if (num1.equals("∞") || num1.equals("-∞") || num2.equals("∞") || num2.equals("-∞")) {
+                        num1 = "OVERFLOW";
+                        op = "";
+                        num2 = "";
+                    }
+                    if (num1.length() > 6 && !num1.equals("UNDEFINED") && !num1.equals("OVERFLOW")) {
+                        num1 = "" + big.format(Double.parseDouble(num1));
+                    }
+                    txt.setText(num1 + " " + op + " " + num2);
+                } catch (Exception ignored) {
                 }
-                else if (!num1.equals("") && !num2.equals("")) {
+            } else if (source == btnEq && !num1.equals("") && !num2.equals("")) {
+                try {
                     switch (op) {
                         case "+":
                             num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
-                            op = "÷";
-                            num2 = "";
                             break;
                         case "-":
                             num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
-                            op = "÷";
-                            num2 = "";
                             break;
                         case "×":
                             num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
-                            op = "÷";
-                            num2 = "";
                             break;
                         case "÷":
                             if (Double.parseDouble(num2) == 0) {
                                 num1 = "UNDEFINED";
-                                op = "";
                             } else {
                                 num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
-                                op = "÷";
                             }
-                            num2 = "";
                             break;
                     }
+                } catch (Exception e) {
+                    num1 = "OVERFLOW";
                 }
-                else if (num1.equals("UNDEFINED")) {
-                    op = "";
+                if (num1.equals("∞") || num1.equals("-∞") || num2.equals("∞") || num2.equals("-∞")) {
+                    num1 = "OVERFLOW";
                 }
-                else {
-                    op = "÷";
-                }
-                if (num1.length() > 6 && !num1.equals("UNDEFINED")) {
-                    num1 = "" + big.format(Double.parseDouble(num1));
-                }
-                txt.setText(num1 + " " + op + " " + num2);
-            } else if (source == btnEq && !num1.equals("") && !num2.equals("")) {
-                switch (op) {
-                    case "+":
-                        num1 = "" + df.format(Double.parseDouble(num1) + Double.parseDouble(num2));
-                        break;
-                    case "-":
-                        num1 = "" + df.format(Double.parseDouble(num1) - Double.parseDouble(num2));
-                        break;
-                    case "×":
-                        num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num2));
-                        break;
-                    case "÷":
-                        if (Double.parseDouble(num2) == 0) {
-                            num1 = "UNDEFINED";
-                        }
-                        else {
-                            num1 = "" + df.format(Double.parseDouble(num1) / Double.parseDouble(num2));
-                        }
-                        break;
-                }
-                if (num1.length() > 6 && !num1.equals("UNDEFINED")) {
+                if (num1.length() > 6 && !num1.equals("UNDEFINED") && !num1.equals("OVERFLOW")) {
                     num1 = "" + big.format(Double.parseDouble(num1));
                 }
                 txt.setText(num1);
@@ -538,12 +616,19 @@ public class GUI extends Frame implements WindowListener {
                 if (!num1.equals("") && op.equals("")) {
                     try {
                         num1 = Double.toString(Double.parseDouble(num1) * (-1));
+                        if (num1.equals("-Infinity") || num1.equals("Infinity")) {
+                            num1 = "OVERFLOW";
+                        }
                         txt.setText(num1);
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                 } else if (!num2.equals("")) {
                     num2 = Double.toString(Double.parseDouble(num2) * (-1));
                     txt.setText(num1 + " " + op + " " + num2);
+                    if (num2.equals("-Infinity") || num2.equals("Infinity")) {
+                        num1 = "OVERFLOW";
+                        txt.setText(num1);
+                    }
                 }
             } else if (source == btnDec) {
                 if (op.equals("") && !num1.contains(".")) {
@@ -552,6 +637,8 @@ public class GUI extends Frame implements WindowListener {
                             num1 = "0.";
                             break;
                         case "UNDEFINED":
+                            break;
+                        case "OVERFLOW":
                             break;
                         default:
                             num1 += ".";
@@ -577,8 +664,7 @@ public class GUI extends Frame implements WindowListener {
                 op = "";
                 num2 = "";
                 txt.setText(num1 + " " + op + " " + num2);
-            }
-            else if (source == btnSqr) {
+            } else if (source == btnSqr) {
                 try {
                     if (!num1.equals("") && op.equals("")) {
                         num1 = "" + df.format(Double.parseDouble(num1) * Double.parseDouble(num1));
@@ -593,16 +679,18 @@ public class GUI extends Frame implements WindowListener {
                         }
                         txt.setText(num1 + " " + op + " " + num2);
                     }
+                } catch (Exception ignored) {
                 }
-                catch (Exception ignored) {}
-            }
-            else if (source == btnSqrRt) {
+                if (num1.equals("∞") || num1.equals("-∞") || num2.equals("∞") || num2.equals("-∞")) {
+                    num1 = "OVERFLOW";
+                    txt.setText(num1);
+                }
+            } else if (source == btnSqrRt) {
                 try {
                     if (!num1.equals("") && op.equals("")) {
                         if (Double.parseDouble(num1) < 0) {
                             num1 = "UNDEFINED";
-                        }
-                        else {
+                        } else {
                             num1 = "" + df.format(Math.sqrt(Double.parseDouble(num1)));
                             if (num1.length() > 6) {
                                 num1 = "" + big.format(Double.parseDouble(num1));
@@ -612,8 +700,7 @@ public class GUI extends Frame implements WindowListener {
                     } else if (!num2.equals("")) {
                         if (Double.parseDouble(num2) < 0) {
                             num2 = "UNDEFINED";
-                        }
-                        else {
+                        } else {
                             num2 = "" + df.format(Math.sqrt(Double.parseDouble(num2)));
                             if (num2.length() > 6) {
                                 num2 = "" + big.format(Double.parseDouble(num2));
@@ -621,16 +708,18 @@ public class GUI extends Frame implements WindowListener {
                         }
                         txt.setText(num1 + " " + op + " " + num2);
                     }
+                } catch (Exception ignored) {
                 }
-                catch (Exception ignored) {}
-            }
-            else if (source == btnRecip) {
+                if (num1.equals("∞") || num1.equals("-∞") || num2.equals("∞") || num2.equals("-∞")) {
+                    num1 = "OVERFLOW";
+                    txt.setText(num1);
+                }
+            } else if (source == btnRecip) {
                 try {
                     if (!num1.equals("") && op.equals("")) {
                         if (Double.parseDouble(num1) == 0) {
                             num1 = "UNDEFINED";
-                        }
-                        else {
+                        } else {
                             num1 = "" + df.format(1 / Double.parseDouble(num1));
                             if (num1.length() > 6) {
                                 num1 = "" + big.format(Double.parseDouble(num1));
@@ -640,8 +729,7 @@ public class GUI extends Frame implements WindowListener {
                     } else if (!num2.equals("")) {
                         if (Double.parseDouble(num2) == 0) {
                             num2 = "UNDEFINED";
-                        }
-                        else {
+                        } else {
                             num2 = "" + df.format(1 / Double.parseDouble(num2));
                             if (num2.length() > 6) {
                                 num2 = "" + big.format(Double.parseDouble(num2));
@@ -649,32 +737,29 @@ public class GUI extends Frame implements WindowListener {
                         }
                         txt.setText(num1 + " " + op + " " + num2);
                     }
+                } catch (Exception ignored) {
                 }
-                catch (Exception ignored) {}
-            }
-            else if (source == btnDel) {
+            } else if (source == btnDel) {
                 if (op.equals("")) {
                     try {
                         x = "" + Double.parseDouble(num1);
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         num1 = "";
                     }
                     try {
                         num1 = num1.substring(0, num1.length() - 1);
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                 } else if (!op.equals("")) {
                     try {
                         x = "" + Double.parseDouble(num2);
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         num2 = "";
                     }
                     try {
                         num2 = num2.substring(0, num2.length() - 1);
+                    } catch (Exception ignored) {
                     }
-                    catch (Exception ignored) {}
                 }
                 txt.setText(num1 + " " + op + " " + num2);
             }
